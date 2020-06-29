@@ -18,6 +18,42 @@ router.get('/courses', (req,res) => {
     })
 });
 
+//GET route => get a specific project using the id
+router.get('/courses/:id', (req, res) => {
+  if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
+    res.status(400).json({message: 'id is not valid'});
+    return;
+  }
+  
+  // Getting all the tasks for this project
+    Course.findById(req.params.id)
+      // .populate('tasks')
+      .then(course => {
+        res.json(course);
+      })
+      .catch(error => {
+        res.status(500).json(error);
+      })
+  });
+
+
+// GET route to UPDATE a specific project
+    // PATCH to update ONE field
+    // PUT to update ALL fields
+    router.put('/courses/:id', (req,res) => {
+      if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
+        res.status(400).json({message: 'id is not valid'});
+        return;
+      }
+      Course.findByIdAndUpdate(req.params.id, req.body)
+        .then(() => {
+          res.json({message:`Course with id ${req.params.id} was updated successfully`});
+        })
+        .catch(error => {
+          res.status(500).json(error);
+        })
+    });
+
 // POST route => to create a new project
 router.post('/courses', (req,res) => {
   const { title, description, videoURL, image, category } = req.body;
