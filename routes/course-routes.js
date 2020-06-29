@@ -8,6 +8,7 @@ router.get('/courses', (req,res) => {
     // Gets data from mongoDB
     Course.find()
     .then(allCourses => {
+      console.log(allCourses)
       // will do something with the result
       res.json(allCourses);
     })
@@ -28,6 +29,7 @@ router.post('/courses', (req,res) => {
     category,
   })
   .then(response => {
+    console.log('Course has been created')
     res.json(response);
   })
   .catch(err => {
