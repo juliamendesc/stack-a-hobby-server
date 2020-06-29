@@ -8,7 +8,11 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+// const cors         = require('cors');
+// const session      = require('express-session');
+// const passport     = require('passport');
 
+// require('./configs/passport');
 
 mongoose
   .connect('mongodb://localhost/stack-a-hobby-server', {useNewUrlParser: true})
@@ -50,9 +54,10 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 app.locals.title = 'Express - Generated with IronGenerator';
 
 
-
+// ROUTES MIDDLEWARE STARTS HERE:
 const index = require('./routes/index');
 app.use('/', index);
+app.use('/api', require('./routes/course-routes'));
 
 
 module.exports = app;
