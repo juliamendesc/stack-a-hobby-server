@@ -20,5 +20,17 @@
   },
   "devDependencies": {
     "nodemon": "^1.12.1"
-  }
+  },
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juliamendesc/stack-a-hobby-server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/juliamendesc/stack-a-hobby-server/issues"
+  },
+  "homepage": "https://github.com/juliamendesc/stack-a-hobby-server#readme",
+  "description": ""
 }
