@@ -8,11 +8,11 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
-// const cors         = require('cors');
-// const session      = require('express-session');
-// const passport     = require('passport');
+const cors         = require('cors');
+const session      = require('express-session');
+const passport     = require('passport');
 
-// require('./configs/passport');
+require('./configs/passport');
 
 mongoose
   .connect('mongodb://localhost/stack-a-hobby-server', {useNewUrlParser: true})
@@ -48,16 +48,34 @@ app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
+// ADD SESSION SETTINGS HERE:
+app.use(session({
+  secret:"myapplication",
+  resave: true,
+  saveUninitialized: true,
+  rolling: true,
+  cookie: {expires: 60000}
+}));
 
+// USE passport.initialize() and passport.sessio() HERE
+app.use(passport.initialize());
+app.use(passport.session());
 
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
+// ADDS CORS SETTINGS HERE TO ALLOW CROSS-ORIGIN INTERACTION:
+app.use(
+  cors({
+    credentials: true,
+    origin:['http://localhost:3000']
+  })
+)
 
 // ROUTES MIDDLEWARE STARTS HERE:
 const index = require('./routes/index');
 app.use('/', index);
 app.use('/api', require('./routes/course-routes'));
-
+app.use('/api', require('./routes/auth.routes'));
 
 module.exports = app;
