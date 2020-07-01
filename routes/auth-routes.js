@@ -1,11 +1,11 @@
 const express    = require('express');
 const authRoutes = express.Router();
 const passport   = require('passport');
-const bcrypt     = require('bcrypt');
+const bcrypt     = require('bcryptjs');
 const User = require('../models/user-model');
 
 authRoutes.post('/signup', (req, res, next) => {
-    const { username, password, email, dateOfBirth } = req.body;
+    const { username, password, email, dateOfBirth, firstName, lastName } = req.body;
     // const isTeacher = User.isTeacher;
     if (!username || !password) {
       res.status(400).json({ message: 'Provide username and password' });
@@ -31,6 +31,8 @@ authRoutes.post('/signup', (req, res, next) => {
             password: hashPass,
             email: email,
             dateOfBirth: dateOfBirth,
+            firstName: firstName,
+            lastName: lastName
             // isTeacher = false
         });
         aNewUser.save(err => {

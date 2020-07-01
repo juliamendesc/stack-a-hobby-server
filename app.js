@@ -76,6 +76,6 @@ app.use(
 const index = require('./routes/index');
 app.use('/', index);
 app.use('/api', require('./routes/course-routes'));
-app.use('/api', require('./routes/auth.routes'));
+app.use('/api', require('./routes/auth-routes'));
 
 module.exports = app;

@@ -3,13 +3,11 @@ const Schema   = mongoose.Schema;
 const userSchema = new Schema({
   username: String,
   password: String,
-  isTeacher: { Boolean, default: false}
-   email: String,
+  // isTeacher: { Boolean, default: false},
+  email: String,
   dateOfBirth: Date,
-  name: {
-    first: { type:String, name:'First Name', required:true },
-    last: { type:String, name:'Last Name', required:true }
-  }
+  firstName: { type:String, required:true },
+  lastName: { type:String, required:true }
 }, 
 {
   timestamps: true
