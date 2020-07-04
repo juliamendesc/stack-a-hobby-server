@@ -33,12 +33,10 @@
     "url": "https://github.com/juliamendesc/stack-a-hobby-server/issues"
   },
   "homepage": "https://github.com/juliamendesc/stack-a-hobby-server#readme",
-
-    "scripts": {
-      "start": "node ./bin/www",
-      "dev": "DEBUG=stack-a-hobby-server:* nodemon ./bin/www",
-      "dev-windows": "nodemon ./bin/www"
-    },
-
+  "scripts": {
+    "start": "node ./bin/www",
+    "dev": "DEBUG=stack-a-hobby-server:* nodemon ./bin/www",
+    "dev-windows": "nodemon ./bin/www"
+  },
   "description": ""
 }

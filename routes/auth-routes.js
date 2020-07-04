@@ -9,6 +9,7 @@ authRoutes.post('/signup', (req, res, next) => {
     // const isTeacher = User.isTeacher;
     if (!username || !password) {
       res.status(400).json({ message: 'Provide username and password' });
+      console.log('erro')
       return;
     }
     if(password.length < 7){
