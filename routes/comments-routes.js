@@ -79,4 +79,18 @@ router.put('/courses/:id/comments/:comment_id', (req, res) => {
     })
 });
 
+router.delete('/courses/:id/comments/:comment_id', (req,res) => {
+  if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
+    res.status(400).json({message: 'id is not valid'});
+    return;
+  }
+  Comment.findByIdAndRemove(req.params.id)
+    .then((response) => {
+     res.json({message: 'The following rating was successfully deleted: ', response})
+    })
+    .catch(error => {
+      res.status(500).json({message: 'Error occurred: ', error})
+    });
+});
+
 module.exports = router;
