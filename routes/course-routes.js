@@ -19,6 +19,7 @@ router.get('/courses/:id', (req, res) => {
     return;
   }
   Course.findById(req.params.id)
+    .populate('comments')
     .then(course => {
       res.json(course);
     })

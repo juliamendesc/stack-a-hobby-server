@@ -1,47 +1,46 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const Comment = require('../models/comments-model');
+const Rating = require('../models/rating-model');
 
-router.get('/courses/:id/comments', (req, res) => {
+router.get('/courses/:id/ratings', (req, res) => {
   if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
     res.status(400).json({message: 'Comment id is not valid'});
     return;
   }
-  Comment.find()
-    .then(comments => {
-      res.json(comments)
+  Rating.find()
+    .then(ratings => {
+      res.json(ratings)
     })
     .catch(err => {
       res.status(500).json(err);
     })
 });
 
-router.post('/courses/:id/comments', (req, res) => {
+router.post('/courses/:id/rating', (req, res) => {
   //lookup course by ID
-  //create new comment
-  //connect new comment to course
+  //create new rating
+  //connect new rating to course
   const user = req.body.user; //alterar para withCredentials:true
   const course = req.params.id;
-  const content = req.body.content;
+  const courseScore = req.body.courseScore;
+  const teacherScore = req.body.teacherScore;
   console.log('course', course);
-  console.log('content', content);
+  console.log('content', courseScore);
+  console.log('content', teacherScore);
   console.log('user', user);
   if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
-    res.status(400).json({message: 'Comment id is not valid'});
+    res.status(400).json({message: 'Rating id is not valid'});
     return;
   }
-    Comment.create({
-      content,
+    Rating.create({
+      courseScore,
+      teacherScore,
       user,
       course
-        // comment.save();
-        // course.comments.push(comment);
-        // course.save();
-        // res.redirect("/courses/" + course._id);
-      })
-    .then(theComment => {
-      res.json(theComment)
+    })
+    .then(theRating => {
+      res.json(theRating)
     })
     .catch(err => {
       console.log(err)
@@ -49,13 +48,12 @@ router.post('/courses/:id/comments', (req, res) => {
     })
 });
 
-// Comment EDIT route
-router.get('/courses/:id/comments/:comment_id/edit', (req, res) => {
+router.get('/courses/:id/ratings/:rating_id/edit', (req, res) => {
   if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
-    res.status(400).json({message: 'Comment id is not valid'});
+    res.status(400).json({message: 'Rating id is not valid'});
     return;
   }
-  Comment.findById(req.params.id)
+  Rating.findById(req.params.id)
   .then(course => {
     res.json(course);
   })
@@ -64,27 +62,26 @@ router.get('/courses/:id/comments/:comment_id/edit', (req, res) => {
   })
 });
 
-// // Comment UPDATE route
-router.put('/courses/:id/comments/:comment_id', (req, res) => {
+router.put('/courses/:id/ratings/:rating_id', (req, res) => {
   if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
-    res.status(400).json({message: 'Comment id is not valid'});
+    res.status(400).json({message: 'Rating id is not valid'});
     return;
   }
-  Comment.findByIdAndUpdate(req.params.id, req.body)
+  Rating.findByIdAndUpdate(req.params.id, req.body)
     .then(() => {
-      res.json({message:`Comment with id ${req.params.id} was updated successfully`});
+      res.json({message:`Rating with id ${req.params.id} was updated successfully`});
     })
     .catch(error => {
       res.status(500).json(error);
     })
 });
 
-router.delete('/courses/:id/comments/:comment_id', (req,res) => {
+router.delete('/courses/:id/ratings/:rating_id', (req,res) => {
   if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
     res.status(400).json({message: 'id is not valid'});
     return;
   }
-  Comment.findByIdAndRemove(req.params.id)
+  Rating.findByIdAndRemove(req.params.id)
     .then((response) => {
      res.json({message: 'The following rating was successfully deleted: ', response})
     })

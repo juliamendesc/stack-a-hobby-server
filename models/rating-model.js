@@ -4,12 +4,11 @@ const ratingSchema = new mongoose.Schema(
   {
     courseScore: Number,
     teacherScore: Number,
-    author: {
+    user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
-
-    company: {
+    course: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Course",
     },

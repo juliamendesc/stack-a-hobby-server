@@ -79,6 +79,8 @@ app.use('/api', require('./routes/course-routes'));
 app.use('/api', require('./routes/auth-routes'));
 app.use('/api', require('./routes/comments-routes'));
 app.use('/api'. require('./routes/user-profile'))
+app.use('/api', require('./routes/rating-routes'));
+
 
 
 module.exports = app;
