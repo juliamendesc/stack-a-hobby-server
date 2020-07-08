@@ -6,7 +6,6 @@ const courseSchema = new Schema(
     title: String,
     description: String,
     videoURL: String,
-    image: String,
     category: String,
     user: { type: Schema.ObjectId, ref: "User" },
     author: {

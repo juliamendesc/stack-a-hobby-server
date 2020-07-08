@@ -3,7 +3,6 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const User = require('../models/user-model');
 
-
 //GET route => to get all the projects
 router.get('/profile', (req, res) => {
   // Gets data from mongoDB

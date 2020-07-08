@@ -9,7 +9,6 @@ authRoutes.post('/signup', (req, res, next) => {
     // const isTeacher = User.isTeacher;
     if (!username || !password) {
       res.status(400).json({ message: 'Provide username and password' });
-      console.log('erro')
       return;
     }
     if(password.length < 7){
@@ -39,7 +38,6 @@ authRoutes.post('/signup', (req, res, next) => {
         aNewUser.save(err => {
             if (err) {
                 res.status(400).json({ message: 'Saving user to database went wrong.' });
-                console.log('aaa')
                 return;
             }
             req.login(aNewUser, (err) => {
