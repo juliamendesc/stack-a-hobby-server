@@ -13,21 +13,11 @@ router.get('/users/:id', (req,res)=>{
   const userId = req.user._id;
   console.log('tenho fome')
   User.findById(userId)
-    .then(userId => {
-      Comment
-        .find({comments})
-        .populate('courses')
-        .then(comments =>{
-          ratingModel
-          .find({'author': userId})
-          .populate('courses')
-          .then(ratings =>{
-            res.json({userId, comments, ratings})
+    .then(user => {
+            res.json({user})
           })
         })
 
-    })
-})
 
 
 
@@ -47,3 +37,5 @@ router.put('/users/edit', (req, res) => {
 
 
 module.exports = router;
+
+
