@@ -15,7 +15,7 @@ const passport     = require('passport');
 require('./configs/passport');
 
 mongoose
-  .connect('mongodb://localhost/stack-a-hobby-server', {useNewUrlParser: true})
+  .connect('mongodb://heroku_f60t7jcb:r66rc9384e2joh9ku5kgmrmik6@ds115543.mlab.com:15543/heroku_f60t7jcb', {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
