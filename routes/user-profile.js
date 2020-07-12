@@ -7,9 +7,8 @@ const Comment = require("../models/comments-model");
 const passportConfigs = require("../configs/passport");
 const passport = require("passport");
 
-router.get("/users/:id", (req, res) => {
+router.get("/userdetails", (req, res) => {
   const userId = req.user._id;
-  console.log("tenho fome");
   User.findById(userId).then((user) => {
     res.json({ user });
   });
