@@ -82,6 +82,4 @@ app.use('/api', require('./routes/user-profile'));
 app.use('/api', require('./routes/rating-routes'));
 app.use('/api', require('./routes/image-routes'));
 
-
-
 module.exports = app;
