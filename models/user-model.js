@@ -9,12 +9,15 @@ const userSchema = new Schema({
   dateOfBirth: Date,
   firstName: { type:String, required:true },
   lastName: { type:String, required:true },
+  file: File,
   ratings: [
     {
        type: mongoose.Schema.Types.ObjectId,
        ref: "Rating"
     }
- ]
+    
+ ],
+  imageUrl: { type: String, required: true }
 }, 
 {
   timestamps: {
