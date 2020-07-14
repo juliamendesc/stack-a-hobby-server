@@ -6,6 +6,7 @@ const courseSchema = new Schema(
     title: String,
     description: String,
     videoURL: String,
+    imageURL: String,
     category: String,
     user: { type: Schema.ObjectId, ref: "User" },
     author: {
@@ -13,7 +14,6 @@ const courseSchema = new Schema(
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
       },
-      username: String,
     },
     comments: [
       {
