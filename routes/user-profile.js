@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const mongoose = require("mongoose");
-const User = require("../models/user-model");
-const ratingModel = require("../models/rating-model");
-const Comment = require("../models/comments-model");
-const passportConfigs = require("../configs/passport");
-const passport = require("passport");
+// const mongoose = require("mongoose");
+// const User = require("../models/user-model");
+// const ratingModel = require("../models/rating-model");
+// const Comment = require("../models/comments-model");
+// const passportConfigs = require("../configs/passport");
+// const passport = require("passport");
 
 router.get("/user-details", (req, res) => {
   const userId = req.user._id;
@@ -17,10 +17,9 @@ router.get("/user-details", (req, res) => {
 // PUT route => to update a specific project
 router.put("/users-edit", (req, res) => {
   const userId = req.user._id;
-  console.log("na rota", req.user);
   User.findByIdAndUpdate(userId, req.body)
+    .populate('username', 'email', 'dateOfBirth', 'firstName', 'lastName')
     .then((response) => {
-      console.log("response", response);
       res.json({ message: `User ${response} was updated succesfully` });
     })
     .catch((error) => {
