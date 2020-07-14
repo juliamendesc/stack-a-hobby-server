@@ -7,7 +7,7 @@ const Comment = require("../models/comments-model");
 const passportConfigs = require("../configs/passport");
 const passport = require("passport");
 
-router.get("/userdetails", (req, res) => {
+router.get("/user-details", (req, res) => {
   const userId = req.user._id;
   User.findById(userId).then((user) => {
     res.json({ user });
@@ -15,7 +15,7 @@ router.get("/userdetails", (req, res) => {
 });
 
 // PUT route => to update a specific project
-router.put("/users/edit", (req, res) => {
+router.put("/users-edit", (req, res) => {
   const userId = req.user._id;
   console.log("na rota", req.user);
   User.findByIdAndUpdate(userId, req.body)
