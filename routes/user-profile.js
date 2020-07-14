@@ -15,7 +15,7 @@ router.get("/user-details", (req, res) => {
 });
 
 // PUT route => to update a specific project
-router.put("/users-edit", (req, res) => {
+router.put("/users-edit/:id", (req, res) => {
   const userId = req.user._id;
   User.findByIdAndUpdate(userId, req.body)
     .populate('username', 'email', 'dateOfBirth', 'firstName', 'lastName')
