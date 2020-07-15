@@ -5,7 +5,7 @@ const bcrypt     = require('bcryptjs');
 const User = require('../models/user-model');
 
 authRoutes.post('/signup', (req, res, next) => {
-    const { username, password, email, dateOfBirth, firstName, lastName } = req.body;
+    const { username, password, email, dateOfBirth, firstName, lastName, imageUrl} = req.body;
     // const isTeacher = User.isTeacher;
     if (!username || !password) {
       res.status(400).json({ message: 'Provide username and password' });
@@ -32,7 +32,8 @@ authRoutes.post('/signup', (req, res, next) => {
             email: email,
             dateOfBirth: dateOfBirth,
             firstName: firstName,
-            lastName: lastName
+            lastName: lastName,
+            imageUrl: imageUrl
             // isTeacher = false
         });
         aNewUser.save(err => {
