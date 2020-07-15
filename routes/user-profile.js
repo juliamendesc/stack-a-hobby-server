@@ -16,7 +16,7 @@ router.get("/user-details", (req, res) => {
 
 // PUT route => to update a specific project
 router.put('/users-edit/:userId', (req, res) => {
-  const userId = req.user._id;
+  const userId = req.params.userId;
   User.findByIdAndUpdate(userId, req.body)
     .then((response) => {
       res.json({ message: `User ${response} was updated succesfully` });
