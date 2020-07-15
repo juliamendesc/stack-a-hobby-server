@@ -36,6 +36,7 @@ authRoutes.post('/signup', (req, res, next) => {
             imageUrl: imageUrl
             // isTeacher = false
         });
+        
         aNewUser.save(err => {
             if (err) {
                 res.status(400).json({ message: 'Saving user to database went wrong.' });
