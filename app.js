@@ -54,7 +54,7 @@ app.use(session({
   resave: true,
   saveUninitialized: true,
   rolling: true,
-  cookie: {expires: 60000}
+  cookie: {expires: 360000}
 }));
 
 // USE passport.initialize() and passport.sessio() HERE
