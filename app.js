@@ -69,7 +69,7 @@ app.use(
   cors({
     credentials: true,
     origin:['http://localhost:3000', 
-    'http://stack-a-hobby.s3-website-eu-west-1.amazonaws.com/']
+    'http://stack-a-hobby.s3-website-eu-west-1.amazonaws.com']
   })
 )
 
