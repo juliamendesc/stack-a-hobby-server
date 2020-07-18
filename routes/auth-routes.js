@@ -88,4 +88,24 @@ authRoutes.get('/loggedin', (req, res, next) => {
 });
 
 
+authRoutes.get(
+    "/auth/google",
+    passport.authenticate("google", {
+      scope: [
+        "https://www.googleapis.com/auth/userinfo.profile",
+        "https://www.googleapis.com/auth/userinfo.email"
+      ]
+    })
+  );
+
+authRoutes.get(
+    "/auth/google/callback",
+    passport.authenticate("google", {
+        //mudar para o AWS
+      successRedirect: "http://localhost:3000/",
+      failureRedirect: "http://localhost:3000/login"
+    })
+  );
+
+
 module.exports = authRoutes;
