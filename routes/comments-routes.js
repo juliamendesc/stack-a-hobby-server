@@ -20,7 +20,8 @@ router.get('/courses/:id/comments', (req, res) => {
 });
 
 router.post('/courses/:id/comments', (req, res) => {
-  const userName = req.user.username;
+
+  const username = req.user.username;
   const user = req.user._id 
   const course = req.params.id;
   const content = req.body.content;
@@ -31,7 +32,7 @@ router.post('/courses/:id/comments', (req, res) => {
     Comment.create({
       content,
       user,
-      userName,
+      username,
       course
     })
     .then(theComment => {
