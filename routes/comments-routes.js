@@ -20,7 +20,8 @@ router.get('/courses/:id/comments', (req, res) => {
 });
 
 router.post('/courses/:id/comments', (req, res) => {
-  const user = req.user._id; 
+  const userName = req.user.username;
+  const user = req.user._id 
   const course = req.params.id;
   const content = req.body.content;
   if(!mongoose.Types.ObjectId.isValid(course)) {
@@ -30,6 +31,7 @@ router.post('/courses/:id/comments', (req, res) => {
     Comment.create({
       content,
       user,
+      userName,
       course
     })
     .then(theComment => {
