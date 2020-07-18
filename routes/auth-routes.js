@@ -37,8 +37,6 @@ authRoutes.post('/signup', (req, res, next) => {
             // isTeacher = false
         });
         
-
-
         aNewUser.save(err => {
             if (err) {
                 res.status(400).json({ message: 'Saving user to database went wrong.' });
@@ -54,6 +52,7 @@ authRoutes.post('/signup', (req, res, next) => {
         });
     });
 });
+
 authRoutes.post('/login', (req, res, next) => {
   passport.authenticate('local', (err, theUser, failureDetails) => {
       if (err) {
@@ -75,10 +74,12 @@ authRoutes.post('/login', (req, res, next) => {
       });
   })(req, res, next);
 });
+
 authRoutes.post('/logout', (req, res, next) => {
   req.logout();
   res.status(200).json({ message: 'Log out success!' });
 });
+
 authRoutes.get('/loggedin', (req, res, next) => {
   if (req.isAuthenticated()) {
       res.status(200).json(req.user);
@@ -106,6 +107,5 @@ authRoutes.get(
       failureRedirect: "http://localhost:3000/login"
     })
   );
-
 
 module.exports = authRoutes;
