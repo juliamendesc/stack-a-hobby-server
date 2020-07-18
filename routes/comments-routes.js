@@ -3,6 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const Comment = require('../models/comments-model');
 const Course = require('../models/course-model');
+const User = require('../models/user-model');
 
 router.get('/courses/:id/comments', (req, res) => {
   if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
@@ -19,10 +20,10 @@ router.get('/courses/:id/comments', (req, res) => {
 });
 
 router.post('/courses/:id/comments', (req, res) => {
-  const user = req.user._id; //alterar para withCredentials:true
+  const user = req.user._id; 
   const course = req.params.id;
   const content = req.body.content;
-  if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
+  if(!mongoose.Types.ObjectId.isValid(course)) {
     res.status(400).json({message: 'Comment id is not valid'});
     return;
   }
@@ -32,8 +33,13 @@ router.post('/courses/:id/comments', (req, res) => {
       course
     })
     .then(theComment => {
-      Course.findByIdAndUpdate(req.params.id, {
+      Course.findByIdAndUpdate(course, {
         $push: { comments: theComment._id}
+      })
+      .then(theComment => {
+        User.findByIdAndUpdate(user, {
+          $push: { comments: theComment._id}
+        })
       })
       .then((theComment) => {
         res.json(theComment)
