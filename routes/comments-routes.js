@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const Comment = require('../models/comments-model');
+const Course = require('../models/course-model');
+const User = require('../models/user-model');
 
 router.get('/courses/:id/comments', (req, res) => {
   if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
@@ -18,30 +20,33 @@ router.get('/courses/:id/comments', (req, res) => {
 });
 
 router.post('/courses/:id/comments', (req, res) => {
-  //lookup course by ID
-  //create new comment
-  //connect new comment to course
-  const user = req.body.user; //alterar para withCredentials:true
+
+  const username = req.user.username;
+  const user = req.user._id 
   const course = req.params.id;
   const content = req.body.content;
-  console.log('course', course);
-  console.log('content', content);
-  console.log('user', user);
-  if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
+  if(!mongoose.Types.ObjectId.isValid(course)) {
     res.status(400).json({message: 'Comment id is not valid'});
     return;
   }
     Comment.create({
       content,
       user,
+      username,
       course
-        // comment.save();
-        // course.comments.push(comment);
-        // course.save();
-        // res.redirect("/courses/" + course._id);
-      })
+    })
     .then(theComment => {
-      res.json(theComment)
+      Course.findByIdAndUpdate(course, {
+        $push: { comments: theComment._id}
+      })
+      .then(theComment => {
+        User.findByIdAndUpdate(user, {
+          $push: { comments: theComment._id}
+        })
+      })
+      .then((theComment) => {
+        res.json(theComment)
+      })
     })
     .catch(err => {
       console.log(err)

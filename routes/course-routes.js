@@ -44,12 +44,14 @@ router.put('/courses/:id', (req,res) => {
 });
 
 router.post('/courses', (req,res) => {
-  const { title, description, videoURL, category } = req.body;
+  const { title, description, videoURL, category, imageURL, author } = req.body;
   Course.create({
     title,
     description,
     videoURL,
     category,
+    imageURL,
+    author
   })
   .then(response => {
     console.log('Course has been created')
