@@ -14,7 +14,7 @@ router.get('/courses', (req,res) => {
 });
 
 router.post('/courses', (req,res) => {
-  console.log("current user", req.session)
+  console.log("current user", req.session);
   const { title, description, videoURL, category, imageURL } = req.body;
   const author = req.user._id;
   const username = req.user.username;
