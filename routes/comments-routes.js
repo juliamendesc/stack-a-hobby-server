@@ -33,7 +33,8 @@ router.post('/courses/:id/comments', (req, res) => {
       content,
       user,
       username,
-      course
+      course,
+      title
     })
     .then(theComment => {
       Course.findByIdAndUpdate(course, {
