@@ -13,6 +13,31 @@ router.get('/courses', (req,res) => {
     })
 });
 
+router.post('/courses', (req,res) => {
+  const { title, description, videoURL, category, imageURL } = req.body;
+  const author = req.user._id;
+  const username = req.user.username;
+
+  console.log("author", author);
+  console.log("username", username);
+  Course.create({
+    title,
+    description,
+    videoURL,
+    category,
+    imageURL,
+    author,
+    username
+  })
+  .then(response => {
+    console.log('Course has been created')
+    res.json(response);
+  })
+  .catch(err => {
+    res.status(500).json(err);
+  })
+});
+
 router.get('/courses/:id', (req, res) => {
   if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
     res.status(400).json({message: 'Course id is not valid'});
@@ -40,30 +65,6 @@ router.put('/courses/:id', (req,res) => {
     .catch(error => {
       res.status(500).json(error);
     })
-});
-
-router.post('/courses', (req,res) => {
-  const { title, description, videoURL, category, imageURL } = req.body;
-  const author = req.user._id;
-  const username = req.user.username;
-  console.log("author", author);
-  console.log("username", username);
-  Course.create({
-    title,
-    description,
-    videoURL,
-    category,
-    imageURL,
-    author,
-    username
-  })
-  .then(response => {
-    console.log('Course has been created')
-    res.json(response);
-  })
-  .catch(err => {
-    res.status(500).json(err);
-  })
 });
 
 router.delete('/courses/:id', (req,res) => {

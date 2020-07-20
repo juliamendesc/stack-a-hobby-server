@@ -25,6 +25,7 @@ router.post('/courses/:id/comments', (req, res) => {
   const course = req.params.id;
   const content = req.body.content;
   const title = course.title;
+  
   if(!mongoose.Types.ObjectId.isValid(course)) {
     res.status(400).json({message: 'Comment id is not valid'});
     return;
