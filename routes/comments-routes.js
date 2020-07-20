@@ -21,10 +21,11 @@ router.get('/courses/:id/comments', (req, res) => {
 
 router.post('/courses/:id/comments', (req, res) => {
   const username = req.user.username;
-  const user = req.user._id 
+  const user = req.user._id;
   const course = req.params.id;
   const content = req.body.content;
   const title = course.title;
+  
   if(!mongoose.Types.ObjectId.isValid(course)) {
     res.status(400).json({message: 'Comment id is not valid'});
     return;
@@ -44,9 +45,9 @@ router.post('/courses/:id/comments', (req, res) => {
         User.findByIdAndUpdate(user, {
           $push: { comments: theComment._id}
         })
-      })
-      .then((theComment) => {
-        res.json(theComment)
+        .then((theComment) => {
+          res.json(theComment)
+        })
       })
     })
     .catch(err => {
