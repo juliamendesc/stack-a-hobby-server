@@ -11,12 +11,12 @@ const userSchema = new Schema({
   firstName: { type:String, required:true },
   lastName: { type:String, required:true },
   imageUrl: String, 
-//   ratings: [
-//     {
-//        type: mongoose.Schema.Types.ObjectId,
-//        ref: "Rating"
-//     }
-//  ],
+  ratings: [
+    {
+       type: mongoose.Schema.Types.ObjectId,
+       ref: "Rating"
+    }
+ ],
  comments: [
   {
     type: mongoose.Schema.Types.ObjectId,
