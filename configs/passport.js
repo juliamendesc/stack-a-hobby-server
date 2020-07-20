@@ -3,7 +3,6 @@ const LocalStrategy = require('passport-local').Strategy;
 const bcrypt        = require('bcryptjs'); // !!!
 const passport      = require('passport');
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
-
 passport.serializeUser((loggedInUser, cb) => {
   cb(null, loggedInUser._id);
 });
@@ -42,14 +41,16 @@ passport.use(
       callbackURL: "/api/auth/google/callback",
     },
     (accessToken, refreshToken, profile, done) => {
+      console.log(profile)
       User.findOne({ googleID: profile.id })
         .then(user => {
+          console.log(user)
           if (user) {
             done(null, user);
             return;
           }
  
-          User.create({ googleId: profile.id})
+          User.create({ googleId: profile.id, username: profile.displayName })
             .then(newUser => {
               done(null, newUser);
             })
