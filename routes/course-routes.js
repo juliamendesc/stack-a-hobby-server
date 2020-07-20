@@ -60,6 +60,8 @@ router.post('/courses', (req,res) => {
     res.json(response);
   })
   .catch(err => {
+    console.log("author", author);
+    console.log("username", username);
     res.status(500).json(err);
   })
 });
