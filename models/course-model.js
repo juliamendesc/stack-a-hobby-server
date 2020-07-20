@@ -14,6 +14,7 @@ const courseSchema = new Schema(
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
       },
+      username: String,
     },
     comments: [
       {
@@ -36,5 +37,6 @@ const courseSchema = new Schema(
   }
 );
 const Course = mongoose.model("Course", courseSchema);
+
 module.exports = Course;
 
