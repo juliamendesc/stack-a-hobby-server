@@ -44,9 +44,9 @@ router.post('/courses/:id/comments', (req, res) => {
         User.findByIdAndUpdate(user, {
           $push: { comments: theComment._id}
         })
-      })
-      .then((theComment) => {
-        res.json(theComment)
+        .then((theComment) => {
+          res.json(theComment)
+        })
       })
     })
     .catch(err => {
