@@ -10,7 +10,8 @@ const commentSchema = new mongoose.Schema({
 	course: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Course'
-	}
+	},
+	courseTitle: String,
 },{
 	timestamps: {
 	  createdAt: 'createdAt',
