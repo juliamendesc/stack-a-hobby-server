@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 const Course = require('../models/course-model');
 
 router.get('/courses', (req,res) => {
-  console.log('user', req.user);
   Course.find()
     .then(allCourses => {
       res.json(allCourses);
@@ -44,7 +43,8 @@ router.put('/courses/:id', (req,res) => {
 });
 
 router.post('/courses', (req,res) => {
-  const { title, description, videoURL, category, imageURL, author } = req.body;
+  const { title, description, videoURL, category, imageURL } = req.body;
+  const author = req.user;
   Course.create({
     title,
     description,
