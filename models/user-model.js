@@ -8,8 +8,8 @@ const userSchema = new Schema({
   isTeacher: { Boolean, default: false},
   email: String,
   dateOfBirth: Date,
-  firstName: { type:String, required:true },
-  lastName: { type:String, required:true },
+  firstName: String,
+  lastName: String,
   imageUrl: String, 
   ratings: [
     {
