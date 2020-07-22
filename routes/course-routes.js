@@ -42,6 +42,7 @@ router.post('/courses', (req,res) => {
   .catch(err => {
     res.status(500).json(err);
   })
+  })
 });
 
 router.get('/courses/:id', (req, res) => {
