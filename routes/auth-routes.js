@@ -93,7 +93,7 @@ authRoutes.get(
     "/auth/google",
     passport.authenticate("google", {
       scope: [
-'profile'
+            'profile'
       ]
     })
   );
