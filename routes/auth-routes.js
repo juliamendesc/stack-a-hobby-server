@@ -6,7 +6,7 @@ const User = require('../models/user-model');
 
 authRoutes.post('/signup', (req, res, next) => {
     const { username, password, email, dateOfBirth, firstName, lastName, imageUrl} = req.body;
-    const isTeacher = false;
+    // const isTeacher = User.isTeacher;
     if (!username || !password) {
       res.status(400).json({ message: 'Provide username and password' });
       return;
@@ -34,9 +34,11 @@ authRoutes.post('/signup', (req, res, next) => {
             firstName: firstName,
             lastName: lastName,
             imageUrl:imageUrl,
-            isTeacher: isTeacher
+            // isTeacher = false
         });
         
+
+
         aNewUser.save(err => {
             if (err) {
                 res.status(400).json({ message: 'Saving user to database went wrong.' });
@@ -52,7 +54,6 @@ authRoutes.post('/signup', (req, res, next) => {
         });
     });
 });
-
 authRoutes.post('/login', (req, res, next) => {
   passport.authenticate('local', (err, theUser, failureDetails) => {
       if (err) {
@@ -74,12 +75,10 @@ authRoutes.post('/login', (req, res, next) => {
       });
   })(req, res, next);
 });
-
 authRoutes.post('/logout', (req, res, next) => {
   req.logout();
   res.status(200).json({ message: 'Log out success!' });
 });
-
 authRoutes.get('/loggedin', (req, res, next) => {
   if (req.isAuthenticated()) {
       res.status(200).json(req.user);
@@ -107,5 +106,6 @@ authRoutes.get(
       failureRedirect: "http://localhost:3000/login"
     })
   );
+
 
 module.exports = authRoutes;
