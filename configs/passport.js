@@ -41,7 +41,8 @@ passport.use(
       callbackURL: "/api/auth/google/callback",
     },
     (accessToken, refreshToken, profile, done) => {
-      console.log(profile)
+         // to see the structure of the data in received response:
+         console.log("Google account details:", profile);
       User.findOne({ googleId: profile.id })
         .then(user => {
           console.log(user)
@@ -50,7 +51,7 @@ passport.use(
             return;
           }
  
-          User.create({ googleId: profile.id, username: profile.displayName,imageUrl: profile.picture, firstName: profile.given_name,lastName: profile.family_name, email:profile.email })
+          User.create({ googleId: profile.id, username: profile.displayName, imageUrl: profile.picture, firstName: profile.given_name,lastName: profile.family_name, email:profile.email })
             .then(newUser => {
               done(null, newUser);
             })

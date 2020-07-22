@@ -103,8 +103,8 @@ authRoutes.get(
     "/auth/google/callback",
     passport.authenticate("google", {
         //mudar para o AWS
-      successRedirect: "http://localhost:3000/",
-      failureRedirect: "http://localhost:3000/login"
+      successRedirect: "/",
+      failureRedirect: "/login"
     })
   );
 
