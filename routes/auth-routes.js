@@ -93,7 +93,8 @@ authRoutes.get(
     "/auth/google",
     passport.authenticate("google", {
       scope: [
-            'profile'
+        "https://www.googleapis.com/auth/userinfo.profile",
+        "https://www.googleapis.com/auth/userinfo.email"
       ]
     })
   );
