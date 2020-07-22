@@ -54,7 +54,7 @@ passport.use(
  
           User.create({ googleId: profile.id, username: profile.displayName, imageUrl: profile.picture, firstName: profile.given_name, lastName: profile.family_name, email:profile.email })
             .then(newUser => {
-              console.log("user was succesfully created", user);
+              console.log("user was succesfully created", newUser);
               done(null, newUser);
             })
             .catch(err => done(err)); // closes User.create()
