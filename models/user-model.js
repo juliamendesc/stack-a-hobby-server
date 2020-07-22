@@ -23,6 +23,12 @@ const userSchema = new Schema({
     ref: "Comment",
   },
 ],
+  courses: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Course'
+    },
+  ],
 },
 {
   timestamps: {

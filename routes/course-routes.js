@@ -30,10 +30,14 @@ router.post('/courses', (req,res) => {
     author,
     username
   })
-  .then(response => {
-    console.log('Course has been created')
-    res.json(response);
-  })
+  .then(theCourse => {
+    User.findByIdAndUpdate(user, {
+      $push: { courses: theCourse._id}
+    })
+    .then(response => {
+      console.log('Course has been created')
+      res.json(response);
+    })
   .catch(err => {
     res.status(500).json(err);
   })
