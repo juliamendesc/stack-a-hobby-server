@@ -34,11 +34,9 @@ authRoutes.post('/signup', (req, res, next) => {
             firstName: firstName,
             lastName: lastName,
             imageUrl:imageUrl,
-            // isTeacher = false
+            isTeacher = false
         });
         
-
-
         aNewUser.save(err => {
             if (err) {
                 res.status(400).json({ message: 'Saving user to database went wrong.' });
@@ -102,8 +100,8 @@ authRoutes.get(
     "/auth/google/callback",
     passport.authenticate("google", {
         //mudar para o AWS
-      successRedirect: "http://localhost:3000/",
-      failureRedirect: "http://localhost:3000/login"
+        successRedirect: "http://localhost:3000/",	
+        failureRedirect: "http://localhost:3000/login"	
     })
   );
 
