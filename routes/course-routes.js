@@ -39,9 +39,9 @@ router.post('/courses', (req,res) => {
       console.log('Course has been created')
       res.json(response);
     })
+  })
   .catch(err => {
     res.status(500).json(err);
-  })
   })
 });
 
