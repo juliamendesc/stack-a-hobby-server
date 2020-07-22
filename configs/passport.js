@@ -42,7 +42,7 @@ passport.use(
     },
     (accessToken, refreshToken, profile, done) => {
       console.log(profile)
-      User.findOne({ googleID: profile.id })
+      User.findOne({ googleId: profile.id })
         .then(user => {
           console.log(user)
           if (user) {
