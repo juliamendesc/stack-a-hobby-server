@@ -44,7 +44,7 @@ passport.use(
     (accessToken, refreshToken, profile, done) => {
          // to see the structure of the data in received response:
          console.log("Google account details:", profile);
-      User.findOne({ googleId: profile.id })
+      User.findOrCreate({ googleId: profile.id })
         .then(user => {
           console.log(user)
           if (user) {
