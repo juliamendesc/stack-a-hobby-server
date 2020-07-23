@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const Course = require('../models/course-model');
+const User = require('../models/user-model');
 
 router.get('/courses', (req,res) => {
   Course.find()
@@ -40,6 +41,7 @@ router.post('/courses', (req,res) => {
     })
   .catch(err => {
     res.status(500).json(err);
+  })
   })
 });
 
