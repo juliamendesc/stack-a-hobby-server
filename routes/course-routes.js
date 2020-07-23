@@ -19,9 +19,6 @@ router.post('/courses', (req,res) => {
   const { title, description, videoURL, category, imageURL } = req.body;
   const author = req.user._id;
   const username = req.user.username;
-
-  console.log("author", author);
-  console.log("username", username);
   Course.create({
     title,
     description,
@@ -42,7 +39,6 @@ router.post('/courses', (req,res) => {
   })
   .catch(err => {
     res.status(500).json(err);
-  })
   })
 });
 
