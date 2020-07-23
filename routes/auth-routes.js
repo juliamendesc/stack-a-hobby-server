@@ -99,8 +99,8 @@ authRoutes.get(
     "/auth/google/callback",
     passport.authenticate("google", {
         //mudar para o AWS
-        successRedirect: "http://localhost:3000/",	
-        failureRedirect: "http://localhost:3000/login"	
+        successRedirect: "http://stack-a-hobby.s3-website-eu-west-1.amazonaws.com/",	
+        failureRedirect: "http://stack-a-hobby.s3-website-eu-west-1.amazonaws.com//login"	
     })
   );
 
