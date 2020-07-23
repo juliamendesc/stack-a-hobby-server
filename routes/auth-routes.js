@@ -100,7 +100,7 @@ authRoutes.get(
     passport.authenticate("google", {
         //mudar para o AWS
         successRedirect: "http://stack-a-hobby.s3-website-eu-west-1.amazonaws.com/",	
-        failureRedirect: "http://stack-a-hobby.s3-website-eu-west-1.amazonaws.com//login"	
+        failureRedirect: "http://stack-a-hobby.s3-website-eu-west-1.amazonaws.com/login"	
     })
   );
 
