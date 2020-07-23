@@ -32,13 +32,14 @@ router.post('/courses', (req,res) => {
     username
   })
   .then(theCourse => {
-    User.findByIdAndUpdate(user, {
+    User.findByIdAndUpdate(req.user, {
       $push: { courses: theCourse._id}
     })
     .then(response => {
       console.log('Course has been created')
       res.json(response);
     })
+  })
   .catch(err => {
     res.status(500).json(err);
   })

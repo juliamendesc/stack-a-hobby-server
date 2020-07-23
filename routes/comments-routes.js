@@ -93,7 +93,7 @@ router.delete('/courses/:id/comments/:comment_id', (req,res) => {
   }
   Comment.findByIdAndRemove(req.params.id)
     .then((response) => {
-     res.json({message: 'The following rating was successfully deleted: ', response})
+     res.json({message: 'The following comment was successfully deleted: ', response})
     })
     .catch(error => {
       res.status(500).json({message: 'Error occurred: ', error})

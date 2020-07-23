@@ -11,12 +11,6 @@ const userSchema = new Schema({
   firstName: String,
   lastName: String,
   imageUrl: String, 
-  ratings: [
-    {
-       type: mongoose.Schema.Types.ObjectId,
-       ref: "Rating"
-    }
- ],
  comments: [
   {
     type: mongoose.Schema.Types.ObjectId,
