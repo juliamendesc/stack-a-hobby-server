@@ -44,14 +44,13 @@ passport.use(
     (accessToken, refreshToken, profile, done) => {
          // to see the structure of the data in received response:
          console.log("Google account details:", profile);
-      User.findOne({ googleId: profile.id })
+      User.findOrCreate({ googleId: profile.id })
         .then(user => {
           console.log(user)
           if (user) {
             done(null, user);
             return;
-          }
- 
+          } 
           User.create({ googleId: profile.id, username: profile.displayName, imageUrl: profile.picture, firstName: profile.given_name, lastName: profile.family_name, email:profile.email })
             .then(newUser => {
               console.log("user was succesfully created", newUser);
@@ -60,7 +59,7 @@ passport.use(
             .catch(err => done(err)); // closes User.create()
         })
         .catch(err => done(err)); // closes User.findOne()
-  }
+    }
 ))
 
 

@@ -34,7 +34,6 @@ authRoutes.post('/signup', (req, res, next) => {
             firstName: firstName,
             lastName: lastName,
             imageUrl:imageUrl,
-            // isTeacher = false
         });
         
         aNewUser.save(err => {
