@@ -18,12 +18,6 @@ const courseSchema = new Schema({
         ref: "Comment",
       },
     ],
-    ratings: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Rating",
-      },
-    ],
   },
   {
     timestamps: {
